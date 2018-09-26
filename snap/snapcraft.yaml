@@ -1,0 +1,19 @@
+name: ipmiview # you probably want to 'snapcraft register <name>'
+version: '0.0.1' # just for humans, typically '1.2+git' or '1.3.2'
+summary: SuperMicro's IPMIView tool
+description: |
+  IPMIView is a GUI-based software application that allows administrators 
+  to manage multiple target systems through BMC. IPMIView V2.0 supports 
+  Supermicro’s BMCs that adheres to either IPMI v1.5 or v2.0.
+
+  IPMIView monitors and reports on the status of a SuperBlade(r) 
+  system, including the blade server, power supply, gigabit switch, 
+  InfiniBand and CMM modules. IPMIView also supports remote KVM and 
+  Virtual Media.
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: devmode # use 'strict' once you have the right plugs and slots
+
+parts:
+  ipmiview:
+    command: echo "YO"
