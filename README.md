@@ -18,3 +18,7 @@ untar
 run ./IPMIView20
 
 Perhaps mount config dir?
+
+
+following this guide:
+https://docs.snapcraft.io/build-snaps/your-first-snap
