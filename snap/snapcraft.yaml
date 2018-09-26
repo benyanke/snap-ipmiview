@@ -19,6 +19,15 @@ apps:
     command: hello
 
 parts:
-  gnu-hello:
-    plugin: autotools
-    source: http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz
+#  gnu-hello:
+#    plugin: autotools
+#    source: http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz
+
+  ipmiview-extract:
+    plugin: dump
+    # 
+    override-build: |
+      wget ftp://ftp.supermicro.com/utility/IPMIView/Linux/IPMIView_2.14.0_build.180213_bundleJRE_Linux_x64.tar.gz -O $SNAPCRAFT_STAGE/ipmi.tar.gz || exit 1
+      tar -xvf $SNAPCRAFT_STAGE/ipmi.tar.gz || exit 1
+      rm -f $SNAPCRAFT_STAGE/ipmi.tar.gz
+      ls . $SNAPCRAFT_STAGE
