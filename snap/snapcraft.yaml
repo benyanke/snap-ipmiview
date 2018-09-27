@@ -21,12 +21,11 @@ apps:
 
   ipmiview:
     command: IPMIView20
-  #  daemon: simple
-  #  plugs:
-  #    - network
-  #    - network-bind
-  #    - network-control
-  #    - network-observe
+    # desktop: share/applications/htmldoc.desktop
+    plugs:
+      - network
+      - home
+      - x11
 
 parts:
   ipmiview-extract:
