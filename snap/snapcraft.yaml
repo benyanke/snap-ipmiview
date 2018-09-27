@@ -13,21 +13,41 @@ description: |
 
 grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: devmode # use 'strict' once you have the right plugs and slots
+# architectures: [ x86 ]
 
 apps:
+  #ipmiview:
+  #  command: hello
+
   ipmiview:
-    command: hello
+    command: IPMIView20
+  #  daemon: simple
+  #  plugs:
+  #    - network
+  #    - network-bind
+  #    - network-control
+  #    - network-observe
 
 parts:
-#  gnu-hello:
-#    plugin: autotools
-#    source: http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz
-
   ipmiview-extract:
-    plugin: dump
+    plugin: nil
+    install: |
+      mkdir -p $SNAPCRAFT_PART_INSTALL/bin
+      # find
+      tar -xvf ipmi-view.tar.gz
+      # pwd
+      # ls ./IPMIView_2.14.0_build.180213_bundleJRE_Linux_x64/
+      env | grep SNAP
+      rsync -avP ./IPMIView_2.14.0_build.180213_bundleJRE_Linux_x64/* $SNAPCRAFT_PART_INSTALL/bin/
+      # /home/benyanke/git/snap-ipmiview/parts/ipmiview-extract/build/IPMIView_2.14.0_build.180213_bundleJRE_Linux_x64/JViewerX9
+      # find
+      # cp mac-spoofer.sh $SNAPCRAFT_PART_INSTALL/bin/
+
+#  ipmiview-extract:
+#    plugin: dump
     # 
-    override-build: |
-      wget ftp://ftp.supermicro.com/utility/IPMIView/Linux/IPMIView_2.14.0_build.180213_bundleJRE_Linux_x64.tar.gz -O $SNAPCRAFT_STAGE/ipmi.tar.gz || exit 1
-      tar -xvf $SNAPCRAFT_STAGE/ipmi.tar.gz || exit 1
-      rm -f $SNAPCRAFT_STAGE/ipmi.tar.gz
-      ls . $SNAPCRAFT_STAGE
+#    override-build: |
+#      wget ftp://ftp.supermicro.com/utility/IPMIView/Linux/IPMIView_2.14.0_build.180213_bundleJRE_Linux_x64.tar.gz -O $SNAPCRAFT_STAGE/ipmi.tar.gz || exit 1
+#      tar -xvf $SNAPCRAFT_STAGE/ipmi.tar.gz || exit 1
+#      rm -f $SNAPCRAFT_STAGE/ipmi.tar.gz
+#      ls . $SNAPCRAFT_STAGE
