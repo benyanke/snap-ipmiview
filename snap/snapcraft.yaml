@@ -14,18 +14,31 @@ description: |
 grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: devmode # use 'strict' once you have the right plugs and slots
 # architectures: [ x86 ]
+# base: 
 
 apps:
   #ipmiview:
   #  command: hello
 
   ipmiview:
-    command: IPMIView20
+    command: bin/IPMIView20
     # desktop: share/applications/htmldoc.desktop
     plugs:
-      - network
+      #- network
+      #- home
+      #- x11
+      - cups-control
+      - desktop
+      - desktop-legacy
+      - gsettings
       - home
+      - network
+      - opengl
+      - removable-media
+      - unity7
+      - wayland
       - x11
+
 
 parts:
   ipmiview-extract:
@@ -38,6 +51,12 @@ parts:
       # ls ./IPMIView_2.14.0_build.180213_bundleJRE_Linux_x64/
       env | grep SNAP
       rsync -avP ./IPMIView_2.14.0_build.180213_bundleJRE_Linux_x64/* $SNAPCRAFT_PART_INSTALL/bin/
+      echo "BINDIR:"
+      echo "BINDIR:"
+      echo "BINDIR:"
+      echo "BINDIR:"
+      echo "BINDIR:"
+      ls $SNAPCRAFT_PART_INSTALL/bin/
       # /home/benyanke/git/snap-ipmiview/parts/ipmiview-extract/build/IPMIView_2.14.0_build.180213_bundleJRE_Linux_x64/JViewerX9
       # find
       # cp mac-spoofer.sh $SNAPCRAFT_PART_INSTALL/bin/
