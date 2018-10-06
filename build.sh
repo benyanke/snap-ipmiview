@@ -4,3 +4,6 @@
 sudo cat /dev/null || exit 1;
 
 snapcraft clean ipmiview-extract -s pull && snapcraft && sudo snap install *.snap --dangerous --devmode
+
+# Useful at times:
+# snap run --shell ipmiview
