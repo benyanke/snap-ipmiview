@@ -23,3 +23,6 @@ Perhaps mount config dir?
 following this guide:
 https://docs.snapcraft.io/build-snaps/your-first-snap
 
+
+Example of a java snap?
+https://github.com/ogra1/jtiledownloader/blob/master/snapcraft.yaml

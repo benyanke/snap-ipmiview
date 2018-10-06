@@ -21,7 +21,10 @@ apps:
   #  command: hello
 
   ipmiview:
-    command: bin/IPMIView20
+#    command: bin/IPMIView20
+#    command: ls .
+#    command: env
+    command: java
     # desktop: share/applications/htmldoc.desktop
     plugs:
       #- network
@@ -41,31 +44,42 @@ apps:
 
 
 parts:
-  ipmiview-extract:
-    plugin: nil
-    install: |
-      mkdir -p $SNAPCRAFT_PART_INSTALL/bin
-      # find
-      tar -xvf ipmi-view.tar.gz
-      # pwd
-      # ls ./IPMIView_2.14.0_build.180213_bundleJRE_Linux_x64/
-      env | grep SNAP
-      rsync -avP ./IPMIView_2.14.0_build.180213_bundleJRE_Linux_x64/* $SNAPCRAFT_PART_INSTALL/bin/
-      echo "BINDIR:"
-      echo "BINDIR:"
-      echo "BINDIR:"
-      echo "BINDIR:"
-      echo "BINDIR:"
-      ls $SNAPCRAFT_PART_INSTALL/bin/
-      # /home/benyanke/git/snap-ipmiview/parts/ipmiview-extract/build/IPMIView_2.14.0_build.180213_bundleJRE_Linux_x64/JViewerX9
-      # find
-      # cp mac-spoofer.sh $SNAPCRAFT_PART_INSTALL/bin/
+
 
 #  ipmiview-extract:
-#    plugin: dump
-    # 
-#    override-build: |
-#      wget ftp://ftp.supermicro.com/utility/IPMIView/Linux/IPMIView_2.14.0_build.180213_bundleJRE_Linux_x64.tar.gz -O $SNAPCRAFT_STAGE/ipmi.tar.gz || exit 1
-#      tar -xvf $SNAPCRAFT_STAGE/ipmi.tar.gz || exit 1
-#      rm -f $SNAPCRAFT_STAGE/ipmi.tar.gz
-#      ls . $SNAPCRAFT_STAGE
+#    source: ./
+#    plugin: make
+#    build-packages:
+#      - wget
+#      - unzip
+#      - ca-certificates
+#      - ca-certificates-java
+#      - openjdk-8-jre-headless
+#    stage-packages:
+  #    - gtk2-engines-murrine
+  #    - hicolor-icon-theme
+#      - openjdk-8-jdk
+
+  ipmiview-extract:
+    plugin: dump
+    source: ipmi-view.tar.gz
+#    source-type: tar
+    stage-packages: ['openjdk-8-jdk']
+    organize:
+      IPMIView_2.14.0_build.180213_bundleJRE_Linux_x64/* : extracted
+    prime:
+      - extracted/*
+   
+#  ipmiview-extract2:
+#    plugin: nil
+#    install: |
+#      mkdir -p $SNAPCRAFT_PART_INSTALL/bin
+#      tar -xvf ipmi-view.tar.gz
+#      env | grep SNAP
+#      rsync -avP ./IPMIView_2.14.0_build.180213_bundleJRE_Linux_x64/* $SNAPCRAFT_PART_INSTALL/bin/
+#      echo "BINDIR:"
+#      echo "BINDIR:"
+#      echo "BINDIR:"
+#      echo "BINDIR:"
+#      echo "BINDIR:"
+#      ls $SNAPCRAFT_PART_INSTALL/bin/
