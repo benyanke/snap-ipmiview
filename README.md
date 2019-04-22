@@ -1,5 +1,7 @@
 # snap-ipmiview
 
+[![Snap Status](https://build.snapcraft.io/badge/benyanke/snap-ipmiview.svg)](https://build.snapcraft.io/user/benyanke/snap-ipmiview)
+
 # TBD, just beginning this
 
 Steps to script:
